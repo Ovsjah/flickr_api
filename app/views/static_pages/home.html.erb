@@ -1,0 +1,25 @@
+<div class="card mt-3 text-center">
+  <div class='card-header'>
+    <div class='container col-md-6'>
+      <%= form_with scope: :flickr, url: root_path, method: :get, local: true, class: 'form' do |f| %>
+        <div class='form-group'>
+          <%= f.label "Search by flickr user id", class: 'col-form-label' %>
+          <%= f.text_field :user_id, class: 'form-control form-control-sm', required: true %>
+        </div>
+        <%= f.submit 'Go!', class: 'btn btn-primary btn-block font-weight-bold' %>
+      <% end %>
+    </div>
+  </div>
+  <% if @photos&.any? %>
+    <div class='card-body bg-light'>
+      <h2 class='card-title'><%= @photos.first['title'] %></h2>
+      <div class='row justify-content-center'>
+        <% @photos.each do |p| %>
+          <div class='col-auto'>
+            <%= image_tag "https://farm#{p.farm}.static.flickr.com/#{p.server}/#{p.id}_#{p.secret}_m.jpg", class: "rounded my-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
