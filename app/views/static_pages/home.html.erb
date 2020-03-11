@@ -1,25 +1,26 @@
-<div class="card mt-3 text-center">
+<div class="card bg-dark m-3 text-center">
   <div class='card-header'>
     <div class='container col-md-6'>
       <%= form_with scope: :flickr, url: root_path, method: :get, local: true, class: 'form' do |f| %>
         <div class='form-group'>
-          <%= f.label "Search by flickr user id", class: 'col-form-label' %>
+          <%= f.label "Search by flickr user id", class: 'col-form-label text-light' %>
           <%= f.text_field :user_id, class: 'form-control form-control-sm', required: true %>
         </div>
-        <%= f.submit 'Go!', class: 'btn btn-primary btn-block font-weight-bold' %>
+        <%= f.submit 'Go!', class: 'btn btn-sm btn-primary btn-block font-weight-bold' %>
       <% end %>
     </div>
   </div>
-  <% if @photos&.any? %>
-    <div class='card-body bg-light'>
-      <h2 class='card-title'><%= @photos.first['title'] %></h2>
-      <div class='row justify-content-center'>
-        <% @photos.each do |p| %>
-          <div class='col-auto'>
-            <%= image_tag "https://farm#{p.farm}.static.flickr.com/#{p.server}/#{p.id}_#{p.secret}_m.jpg", class: "rounded my-3" %>
+  <% if @collected_photos&.any? %>
+    <div class='card-body'>
+      <div class='row justify-content-around'>
+        <% @collected_photos.each do |p| %>
+          <div class="col-auto p-0 my-4">
+            <%= image_tag p.url_c, class: 'img-thumbnail border-0 bg-light rounded-0' %>
+            <div class="card-footer border-0 rounded-0 bg-light"><%= p.title %></div>
           </div>
         <% end %>
       </div>
+      <%= paginate @collected_photos, theme: 'twitter-bootstrap-4' %>
     </div>
   <% end %>
 </div>

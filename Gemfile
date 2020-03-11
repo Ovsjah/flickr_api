@@ -30,6 +30,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # For flickr-api
 gem 'flickraw'
+# Paginator
+gem 'kaminari'
+# Bootstrap styling
+gem 'bootstrap4-kaminari-views'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
