@@ -15,7 +15,7 @@
       <div class='row justify-content-around'>
         <% @collected_photos.each do |p| %>
           <div class="col-auto p-0 my-4">
-            <%= image_tag p.url_c, class: 'img-thumbnail border-0 bg-light rounded-0' %>
+            <%= image_tag url(p), class: 'img-thumbnail border-0 bg-light rounded-0' %>
             <div class="card-footer border-0 rounded-0 bg-light"><%= p.title %></div>
           </div>
         <% end %>

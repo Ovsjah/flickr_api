@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
       @flickr.photos.search(
         user_id: params[:flickr][:user_id],
         page: page, per_page: 500,
-        extras: :url_c
+        extras: 'url_c, url_o'
       )
     end
 
