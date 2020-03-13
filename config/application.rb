@@ -32,14 +32,8 @@ module FlickrApi
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.before_configuration do
-      env_file = File.join(Rails.root, 'config', 'local_env.yml')
-      YAML.load(File.open(env_file)).each do |key, value|
-        ENV[key.to_s] = value
-      end if File.exists?(env_file)
-    end
-
-    FlickRaw.api_key = ENV["FLICKRAW_API_KEY"]
-    FlickRaw.shared_secret = ENV["FLICKRAW_SHARED_SECRET"]
+    # Flickr secrets
+    FlickRaw.api_key = Rails.application.secrets.flickr_api_key
+    FlickRaw.shared_secret = Rails.application.secrets.flickr_shared_secret
   end
 end
